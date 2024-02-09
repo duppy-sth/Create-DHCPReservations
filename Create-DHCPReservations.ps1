@@ -14,14 +14,13 @@
 # SCRIPT NAME: Create-DHCPReservations.ps1
 # CREATOR: DU
 # DATE: 15-11-23
-# UPDATED: 9-2-2024
+# UPDATED: 
 # VERSION: 1.1
 # REFERENCES:
 <# VERSION HISTORY:
-    1.0.0 	: Quick 'n'dirty script
-	1.1.0 	: Added sanity checks
-	1.2.0 	: Added creation of CSV file containing the reservations created
-	1.2.1	: Corrections
+    1.0 : Quick 'n'dirty script
+	1.1 : Added sanity checks
+	1.2 : Added creation of CSV file containing the reservations created
 #>
 
 # PREFERENCES
@@ -34,10 +33,10 @@ $OutputArray = @()
 
 # Sanity checks
 
-$NeededFree = Get-Content .\DHCP-Reservations.csv | Measure-Object -line | Select-Object -ExpandProperty Lines
-$ActualFree = Get-DhcpServerv4ScopeStatistics -ComputerName $env:computername | Select-Object -ExpandProperty Free
+# $NeededFree = Get-Content .\DHCP-Reservations.csv | Measure-Object -line | Select-Object -ExpandProperty Lines
+# $ActualFree = Get-DhcpServerv4ScopeStatistics -ComputerName $env:computername | Select-Object -ExpandProperty Free
 
-if ($NeededFree -lt $ActualFree) {
+# if ($NeededFree -lt $ActualFree) {
 
 	Write-Host "Backing up DHCP..."
 
@@ -53,9 +52,9 @@ if ($NeededFree -lt $ActualFree) {
 		$OutputArray | Export-Csv -Path .\created-reservations.csv -NoTypeInformation
 	Write-Host "Its done! (Providing you didn't get a load of errors just then :) "
 	Write-Host "Newly created reservations have been saved to ""created-reservations.csv"""
-	} else {
-		Write-Host "There's not enough free IP addresses in the scope to make these reservations."
-		Write-Host "Number of IP addresses required : $NeededFree"
-		Write-Host "Number of IP addresses available : $ActualFree"
+	#} else {
+	#	Write-Host "There's not enough free IP addresses in the scope to make these reservations."
+	#	Write-Host "Number of IP addresses required : $NeededFree"
+	#	Write-Host "Number of IP addresses available : $ActualFree"
 	}
 
