@@ -14,13 +14,14 @@
 # SCRIPT NAME: Create-DHCPReservations.ps1
 # CREATOR: DU
 # DATE: 15-11-23
-# UPDATED: 
+# UPDATED: 9-2-2024
 # VERSION: 1.1
 # REFERENCES:
 <# VERSION HISTORY:
-    1.0 : Quick 'n'dirty script
-	1.1 : Added sanity checks
-	1.2 : Added creation of CSV file containing the reservations created
+    1.0.0 	: Quick 'n'dirty script
+	1.1.0 	: Added sanity checks
+	1.2.0 	: Added creation of CSV file containing the reservations created
+	1.2.1	: Corrections
 #>
 
 # PREFERENCES
